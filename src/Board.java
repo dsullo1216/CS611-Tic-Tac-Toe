@@ -71,6 +71,11 @@ public class Board {
         return false;
     }
 
+    // Replaces current board's 2-D array with new default one
+    public void reset() {
+        this.board = new char[this.board.length][this.board.length];
+    }
+
     public static void main(String[] args) {
         Board test = new Board();
         test.addChecker('X', 0, 2);
@@ -78,5 +83,7 @@ public class Board {
         test.addChecker('X', 2, 0);
         System.out.println(test);
         System.out.println(test.isWin('X'));
+        test.reset();
+        System.out.println(test);
     }
 }

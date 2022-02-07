@@ -2,7 +2,8 @@ package src;
 
 public class Board {
     
-    private char[][] board; // 2-D char array that will store the data for the Tic-Tac-Toe board
+    // 2-D char array that will store the data for the Tic-Tac-Toe board
+    private char[][] board; 
 
     // Default constructor that initializes board as a 3x3 2-D array
     public Board() {

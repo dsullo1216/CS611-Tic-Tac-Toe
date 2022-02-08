@@ -30,6 +30,11 @@ public class Player {
         return this.numWins;
     }
 
+    public int changeNumWins(int newNumWins) {
+        this.numWins = newNumWins;
+        return this.numWins;
+    }
+
     public static void main(String[] args) {
         Player test = new Player('X');
         System.out.println(test);

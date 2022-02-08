@@ -27,44 +27,60 @@ public class Game {
         else {
             player2 = new Player('X');
         }
-        while (true) {
+        while(true) {
 
-            System.out.print(player1 + ", Enter your move in the format 'row,col' : ");
-            String player1Move = sc.next();
-            int player1Row = Character.getNumericValue(player1Move.charAt(0));
-            int player1Col = Character.getNumericValue(player1Move.charAt(2));
-            while (board.addChecker(player1.getChecker(), player1Row, player1Col) == false) {
-                System.out.print("Invalid move. Please try again: ");
-                player1Move = sc.next();
-                player1Row = Character.getNumericValue(player1Move.charAt(0));
-                player1Col = Character.getNumericValue(player1Move.charAt(2));
-            }
-            System.out.println(board);
-            if (this.board.isWin(player1.getChecker())) {
-                player1.changeNumWins(player1.getNumWins() + 1);
-                System.out.println(player1 + " has won the game!");
-                break;
-            }
+            while (true) {
 
-            System.out.print(player2 + ", Enter your move in the format 'row,col' : ");
-            String player2Move = sc.next();
-            int player2Row = Character.getNumericValue(player2Move.charAt(0));
-            int player2Col = Character.getNumericValue(player2Move.charAt(2));
-            while (board.addChecker(player2.getChecker(), player2Row, player2Col) == false) {
-                System.out.print("Invalid move. Please try again: ");
-                player2Move = sc.next();
-                player2Row = Character.getNumericValue(player2Move.charAt(0));
-                player2Col = Character.getNumericValue(player2Move.charAt(2));
+                System.out.print(player1 + ", Enter your move in the format 'row,col' : ");
+                String player1Move = sc.next();
+                int player1Row = Character.getNumericValue(player1Move.charAt(0));
+                int player1Col = Character.getNumericValue(player1Move.charAt(2));
+                while (board.addChecker(player1.getChecker(), player1Row, player1Col) == false) {
+                    System.out.print("Invalid move. Please try again: ");
+                    player1Move = sc.next();
+                    player1Row = Character.getNumericValue(player1Move.charAt(0));
+                    player1Col = Character.getNumericValue(player1Move.charAt(2));
+                }
+                System.out.println(board);
+                if (board.isWin(player1.getChecker())) {
+                    player1.changeNumWins(player1.getNumWins() + 1);
+                    System.out.println(player1 + " has won the game!");
+                    break;
+                }
+
+                System.out.print(player2 + ", Enter your move in the format 'row,col' : ");
+                String player2Move = sc.next();
+                int player2Row = Character.getNumericValue(player2Move.charAt(0));
+                int player2Col = Character.getNumericValue(player2Move.charAt(2));
+                while (board.addChecker(player2.getChecker(), player2Row, player2Col) == false) {
+                    System.out.print("Invalid move. Please try again: ");
+                    player2Move = sc.next();
+                    player2Row = Character.getNumericValue(player2Move.charAt(0));
+                    player2Col = Character.getNumericValue(player2Move.charAt(2));
+                }
+                System.out.println(board);
+                if (board.isWin(player2.getChecker())) {
+                    player1.changeNumWins(player2.getNumWins() + 1);
+                    System.out.println(player2 + " has won the game!");
+                    break;
+                }
             }
-            System.out.println(board);
-            if (this.board.isWin(player2.getChecker())) {
-                player1.changeNumWins(player2.getNumWins() + 1);
-                System.out.println(player2 + " has won the game!");
+            
+            System.out.print("Would you like to play again? (Y/N): ");
+            char playAgain = sc.next().charAt(0);
+            while (playAgain != 'Y' && playAgain != 'N') {
+                System.out.print("Please enter either Y or N to choose to play again");
+            }
+            if (playAgain == 'Y') {
+                board.reset();
+                System.out.println(board);
+                continue;
+            }
+            else {
+                System.out.println("Game Over. Final Score: " + player1 + " - " + player1.getNumWins() + ", " + player2 + " - " + player2.getNumWins());
                 break;
             }
         }
-
-
         sc.close();
     }
 

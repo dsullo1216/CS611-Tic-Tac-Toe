@@ -38,7 +38,7 @@ public class Board {
             System.out.println("Invalid checker type");
             return false;
         }
-        if (row > this.board.length || col > this.board[0].length) { 
+        if (row >= this.board.length || col >= this.board[0].length) { 
             System.out.println("Index is out of range");
             return false; 
         }
@@ -53,7 +53,7 @@ public class Board {
 
     // Valids parameters and procedes to remove the desired index's checker from the Board
     public boolean removeChecker(int row, int col) {
-        if (row > this.board.length || col > this.board[0].length) {
+        if (row >= this.board.length || col >= this.board[0].length) {
             System.out.println("Index is out of range");
             return false;
         }
@@ -93,16 +93,5 @@ public class Board {
     // Replaces current board's 2-D array with new default one
     public void reset() {
         this.board = new char[this.board.length][this.board.length];
-    }
-
-    public static void main(String[] args) {
-        Board test = new Board();
-        test.addChecker('X', 0, 2);
-        test.addChecker('X', 1, 1);
-        test.addChecker('X', 2, 0);
-        System.out.println(test);
-        System.out.println(test.isWin('X'));
-        test.reset();
-        System.out.println(test);
     }
 }

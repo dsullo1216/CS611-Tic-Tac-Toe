@@ -34,11 +34,4 @@ public class Player {
         this.numWins = newNumWins;
         return this.numWins;
     }
-
-    public static void main(String[] args) {
-        Player test = new Player('X');
-        System.out.println(test);
-        System.out.println(test.getChecker());
-        System.out.println(test.getNumWins());
-    }
 }

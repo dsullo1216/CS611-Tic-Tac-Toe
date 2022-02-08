@@ -69,7 +69,8 @@ public class Game {
             System.out.print("Would you like to play again? (Y/N): ");
             char playAgain = sc.next().charAt(0);
             while (playAgain != 'Y' && playAgain != 'N') {
-                System.out.print("Please enter either Y or N to choose to play again");
+                System.out.print("Please enter either Y or N to choose to play again: ");
+                playAgain = sc.next().charAt(0);
             }
             if (playAgain == 'Y') {
                 board.reset();
@@ -82,10 +83,5 @@ public class Game {
             }
         }
         sc.close();
-    }
-
-    public static void main(String[] args) {
-        Game game = new Game();
-        game.playGame();
     }
 }

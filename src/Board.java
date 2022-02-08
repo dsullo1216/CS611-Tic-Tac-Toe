@@ -33,22 +33,40 @@ public class Board {
     }
 
     // Valids parameters and procedes to add the desired checker to the Board
-    public void addChecker(char checker, int row, int col) {
-        assert (checker == 'X' || checker == 'O'): "Invalid Checker Type";
-        assert (row < this.board.length && col < this.board[0].length): "Index is Out of Range";
-        assert (this.board[row][col] == '\u0000'): "Space is Already Taken";
+    public boolean addChecker(char checker, int row, int col) {
+        if (checker != 'X' && checker != 'O') {
+            System.out.println("Invalid checker type");
+            return false;
+        }
+        if (row > this.board.length || col > this.board[0].length) { 
+            System.out.println("Index is out of range");
+            return false; 
+        }
+        if (this.board[row][col] != '\u0000') { 
+            System.out.println("Space is already taken");
+            return false; 
+        }
+        
         this.board[row][col] = checker;
+        return true;
     }
 
     // Valids parameters and procedes to remove the desired index's checker from the Board
-    public void removeChecker(int row, int col) {
-        assert (row < this.board.length && col < this.board[0].length): "Index is Out of Range";
+    public boolean removeChecker(int row, int col) {
+        if (row > this.board.length || col > this.board[0].length) {
+            System.out.println("Index is out of range");
+            return false;
+        }
         this.board[row][col] = '\u0000';
+        return true;
     }
 
     // Returns true if specified char has a win in the game
     public boolean isWin(char checker) {
-        assert (checker == 'X' || checker == 'O'): "Invalid Checker Type";
+        if (checker != 'X' && checker != 'O') {
+            System.out.println("Invalid checker type");
+            return false;
+        }
         // loops through possible row/col indices. checks for horizontal/vertical win each pass for efficiency
         for (int i = 0; i < this.board.length; i++) {
             // checks for horizontal win

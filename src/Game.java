@@ -9,8 +9,7 @@ public class Game {
         this.board = new Board();
     }
 
-    public void playGame() {
-        Scanner sc = new Scanner(System.in);
+    public Player[] launchGame(Scanner sc) {
         System.out.println("Welcome to Tic-Tac-Toe!");
         System.out.println(board);
         System.out.print("Please enter which player should move first 'X' or 'O': ");
@@ -19,6 +18,7 @@ public class Game {
          System.out.print("Incorrect character entered. Please enter either 'X' or 'O': ");
          player1Checker = sc.next().charAt(0);
         }
+        Player[] players = new Player[2];
         Player player1 = new Player(player1Checker);
         Player player2;
         if (player1Checker == 'X') {
@@ -27,46 +27,13 @@ public class Game {
         else {
             player2 = new Player('X');
         }
-        while(true) {
+        players[0] = player1;
+        players[1] = player2;
+        return players;
+    }
 
-            while (true) {
-
-                System.out.print(player1 + ", Enter your move in the format 'row,col' : ");
-                String player1Move = sc.next();
-                int player1Row = Character.getNumericValue(player1Move.charAt(0));
-                int player1Col = Character.getNumericValue(player1Move.charAt(2));
-                while (board.addChecker(player1.getChecker(), player1Row, player1Col) == false) {
-                    System.out.print("Invalid move. Please try again: ");
-                    player1Move = sc.next();
-                    player1Row = Character.getNumericValue(player1Move.charAt(0));
-                    player1Col = Character.getNumericValue(player1Move.charAt(2));
-                }
-                System.out.println(board);
-                if (board.isWin(player1.getChecker())) {
-                    player1.changeNumWins(player1.getNumWins() + 1);
-                    System.out.println(player1 + " has won the game!");
-                    break;
-                }
-
-                System.out.print(player2 + ", Enter your move in the format 'row,col' : ");
-                String player2Move = sc.next();
-                int player2Row = Character.getNumericValue(player2Move.charAt(0));
-                int player2Col = Character.getNumericValue(player2Move.charAt(2));
-                while (board.addChecker(player2.getChecker(), player2Row, player2Col) == false) {
-                    System.out.print("Invalid move. Please try again: ");
-                    player2Move = sc.next();
-                    player2Row = Character.getNumericValue(player2Move.charAt(0));
-                    player2Col = Character.getNumericValue(player2Move.charAt(2));
-                }
-                System.out.println(board);
-                if (board.isWin(player2.getChecker())) {
-                    player1.changeNumWins(player2.getNumWins() + 1);
-                    System.out.println(player2 + " has won the game!");
-                    break;
-                }
-            }
-            
-            System.out.print("Would you like to play again? (Y/N): ");
+    public boolean continueGame(Player player1, Player player2, Scanner sc) {
+        System.out.print("Would you like to play again? (Y/N): ");
             char playAgain = sc.next().charAt(0);
             while (playAgain != 'Y' && playAgain != 'N') {
                 System.out.print("Please enter either Y or N to choose to play again: ");
@@ -75,10 +42,60 @@ public class Game {
             if (playAgain == 'Y') {
                 board.reset();
                 System.out.println(board);
+                return true;
+            }
+            else{
+                System.out.println("Game Over. Final Score: " + player1 + " - " + player1.getNumWins() + ", " + player2 + " - " + player2.getNumWins());
+                return false;
+            }
+    }
+
+    public void addChecker(Player player, Scanner sc) {
+        System.out.print(player + ", Enter your move in the format 'row,col' : ");
+        String playerMove = sc.next();
+        if (playerMove.length() < 3) {
+            playerMove = "x,x";
+        }
+        int playerRow = Character.getNumericValue(playerMove.charAt(0));
+        int playerCol = Character.getNumericValue(playerMove.charAt(2));
+        while (board.addChecker(player.getChecker(), playerRow, playerCol) == false) {
+            System.out.print("Invalid move. Please try again: ");
+            playerMove = sc.next();
+            if (playerMove.length() < 3) {
                 continue;
             }
-            else {
-                System.out.println("Game Over. Final Score: " + player1 + " - " + player1.getNumWins() + ", " + player2 + " - " + player2.getNumWins());
+            playerRow = Character.getNumericValue(playerMove.charAt(0));
+            playerCol = Character.getNumericValue(playerMove.charAt(2));
+        }
+        System.out.println(board);
+    }
+
+    public boolean processMove(Player player, Scanner sc) {
+        this.addChecker(player, sc);
+        if (board.isWin(player.getChecker())) {
+            player.changeNumWins(player.getNumWins() + 1);
+            System.out.println(player + " has won the game!");
+            return true;
+        }
+        return false;
+    }
+
+    public void playGame() {
+        Scanner sc = new Scanner(System.in);
+        Player[] players= launchGame(sc);
+        Player player1,player2;
+        player1 = players[0];
+        player2 = players[1];
+        while(true) {
+            while (true) {
+                if (processMove(player1, sc)) {
+                    break;
+                }
+                if (processMove(player2, sc)) {
+                    break;
+                }
+            }
+            if (!continueGame(player1, player2, sc)) {
                 break;
             }
         }

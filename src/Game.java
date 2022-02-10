@@ -77,6 +77,10 @@ public class Game {
             System.out.println(player + " has won the game!");
             return true;
         }
+        else if (board.isFull()) {
+            System.out.println("It's a tie!");
+            return true;
+        }
         return false;
     }
 

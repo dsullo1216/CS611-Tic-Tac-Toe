@@ -1,4 +1,3 @@
-package src;
 
 // Piece class for implementing Tic-Tac-Toe. Holds a char of either 'X' or 'O' to be placed on the Board. Includes getters/setters
 public class Piece {

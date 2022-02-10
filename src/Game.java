@@ -1,6 +1,4 @@
-package src;
 import java.util.Scanner;
-
 
 // Game class for implementing Tic-Tac-Toe. Holds an instance of Board class and includes methods to faciliate the game of Tic-Tac-Toe.
 public class Game {

@@ -1,4 +1,3 @@
-package src;
 
 // Player class for implementing Tic-Tac-Toe. It holds the respective Piece as well as the number of wins the player has. Includes getters/setters
 public class Player {

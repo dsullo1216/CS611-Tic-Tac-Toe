@@ -1,4 +1,3 @@
-package src;
 
 // Wrapper class that invokes our Game class to run Tic-Tac-Toe.
 public class Main {

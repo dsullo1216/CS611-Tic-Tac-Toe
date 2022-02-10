@@ -1,5 +1,6 @@
 package src;
 
+// Board class for implementing Tic-Tac-Toe. It holds a 2-D array of the Piece class and allows us to manipulate the board and check board status
 public class Board {
     
     // 2-D char array that will store the data for the Tic-Tac-Toe board
@@ -21,7 +22,7 @@ public class Board {
         for (int i = 0; i < board.length; i++) {
             s += "|";
             for (int j = 0; j < board[0].length; j++) {
-                if (board[i][j] == null || board[i][j].getChecker() == '\u0000') {
+                if (board[i][j].equals(null) || board[i][j].getChecker() == '\u0000') {
                     s += " ";
                 }
                 else { 
@@ -44,7 +45,7 @@ public class Board {
             System.out.println("Index is out of range");
             return false; 
         }
-        if (board[row][col] == null) { 
+        if (board[row][col].equals(null)) { 
             board[row][col] = checker;
             return true;
         }
@@ -76,30 +77,31 @@ public class Board {
         // loops through possible row/col indices. checks for horizontal/vertical win each pass for efficiency
         for (int i = 0; i < board.length; i++) {
             // checks for horizontal win
-            if (board[i][0] == checker && board[i][1] == checker && board[i][2] ==  checker) {
+            if (board[i][0].equals(checker) && board[i][1].equals(checker) && board[i][2].equals(checker)) {
                 return true;
             }
             // checks for vertical win
-            if (board[0][i] == checker && board[1][i] == checker && board[2][i] ==  checker) {
+            if (board[0][i].equals(checker) && board[1][i].equals(checker) && board[2][i].equals(checker)) {
                 return true;
             }
         }
         // checks for upper-left to lower-right diagonal win
-        if (board[0][0] == checker && board[1][1] == checker && board[2][2] ==  checker) {
+        if (board[0][0].equals(checker) && board[1][1].equals(checker) && board[2][2].equals(checker)) {
             return true;
         }
         // checks for upper-right to lower-left diagonal win
-        if (board[0][2] == checker && board[1][1] == checker && board[2][0] ==  checker) {
+        if (board[0][2].equals(checker) && board[1][1].equals(checker) && board[2][0].equals(checker)) {
             return true;
         }
         // returns false if no win is found
         return false;
     }
 
+    // Iterates through Board and checks if the board is full; meaning a tie has occurred
     public boolean isFull() {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
-                if (board[i][j] == null || board[i][j].getChecker() == '\u0000') {
+                if (board[i][j].equals(null) || board[i][j].getChecker() == '\u0000') {
                     return false;
                 }
             }

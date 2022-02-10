@@ -1,14 +1,19 @@
 package src;
 import java.util.Scanner;
 
+
+// Game class for implementing Tic-Tac-Toe. Holds an instance of Board class and includes methods to faciliate the game of Tic-Tac-Toe.
 public class Game {
     
+    // Holds an instance of our Board class for the game
     private Board board;
     
+    // No args constructor that initializes our Board
     public Game() {
         this.board = new Board();
     }
 
+    // Handles the beginning of the game by printing the proper messages and allows user to determine whether 'X' or 'O' goes first
     public Player[] launchGame(Scanner sc) {
         System.out.println("Welcome to Tic-Tac-Toe!");
         System.out.println(board);
@@ -32,6 +37,7 @@ public class Game {
         return players;
     }
 
+    // Handles the end of the game by printing proper messages and allows user to decide whether to play another game
     public boolean continueGame(Player player1, Player player2, Scanner sc) {
         System.out.print("Would you like to play again? (Y/N): ");
             char playAgain = sc.next().charAt(0);
@@ -50,6 +56,7 @@ public class Game {
             }
     }
 
+    // Handles adding a checker to the board and validating indices inputs
     public void addChecker(Player player, Scanner sc) {
         System.out.print(player + ", Enter your move in the format 'row,col' : ");
         String playerMove = sc.next();
@@ -70,6 +77,7 @@ public class Game {
         System.out.println(board);
     }
 
+    // Handles adding checker to the board and procedes to check for win for specified player or a tie
     public boolean processMove(Player player, Scanner sc) {
         addChecker(player, sc);
         if (board.isWin(player.getChecker())) {
@@ -84,6 +92,7 @@ public class Game {
         return false;
     }
 
+    // Calls other methods of Game class and facilitates the game
     public void playGame() {
         Scanner sc = new Scanner(System.in);
         Player[] players = launchGame(sc);

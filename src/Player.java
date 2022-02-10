@@ -1,5 +1,6 @@
 package src;
 
+// Player class for implementing Tic-Tac-Toe. It holds the respective Piece as well as the number of wins the player has. Includes getters/setters
 public class Player {
 
     // char storing either 'X' or 'O' as the Player's checker
@@ -30,6 +31,7 @@ public class Player {
         return this.numWins;
     }
 
+    // setter that allows us to change the value for numWins
     public int changeNumWins(int newNumWins) {
         this.numWins = newNumWins;
         return this.numWins;

@@ -3,13 +3,13 @@ package src;
 public class Player {
 
     // char storing either 'X' or 'O' as the Player's checker
-    private char checker;
+    private Piece checker;
     // int storing the number of wins the Player has
     private int numWins;
 
     // Constructor that takes either 'X' or 'O' as parameter and initializes numWins
-    public Player(char checker) {
-        assert (checker == 'X' || checker == 'O'): "Invalid Checker Type";
+    public Player(Piece checker) {
+        assert (checker.getChecker() == 'X' || checker.getChecker() == 'O'): "Invalid Checker Type";
         this.checker = checker;
         this.numWins = 0;
     }
@@ -20,8 +20,8 @@ public class Player {
     }
 
     // getter that returns the value for checker
-    public char getChecker() {
-        return checker;
+    public Piece getChecker() {
+        return this.checker;
 
     }
     

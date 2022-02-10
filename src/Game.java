@@ -19,13 +19,13 @@ public class Game {
          player1Checker = sc.next().charAt(0);
         }
         Player[] players = new Player[2];
-        Player player1 = new Player(player1Checker);
+        Player player1 = new Player(new Piece(player1Checker));
         Player player2;
         if (player1Checker == 'X') {
-            player2 = new Player('O');
+            player2 = new Player(new Piece('O'));
         }
         else {
-            player2 = new Player('X');
+            player2 = new Player(new Piece('X'));
         }
         players[0] = player1;
         players[1] = player2;
@@ -86,7 +86,7 @@ public class Game {
 
     public void playGame() {
         Scanner sc = new Scanner(System.in);
-        Player[] players= launchGame(sc);
+        Player[] players = launchGame(sc);
         Player player1,player2;
         player1 = players[0];
         player2 = players[1];

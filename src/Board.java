@@ -3,16 +3,16 @@ package src;
 public class Board {
     
     // 2-D char array that will store the data for the Tic-Tac-Toe board
-    private char[][] board; 
+    private Piece[][] board; 
 
     // Default constructor that initializes board as a 3x3 2-D array
     public Board() {
-        this.board = new char[3][3];
+        this.board = new Piece[3][3];
     }
 
     // Constructor that allows for 2-D array of any size
     public Board(int boardSize) {
-        this.board = new char[boardSize][boardSize];
+        this.board = new Piece[boardSize][boardSize];
     }
 
     // Overrides default toString method from Object class
@@ -21,10 +21,12 @@ public class Board {
         for (int i = 0; i < board.length; i++) {
             s += "|";
             for (int j = 0; j < board[0].length; j++) {
-                if (board[i][j] == '\u0000') {
+                if (board[i][j] == null || board[i][j].getChecker() == '\u0000') {
                     s += " ";
                 }
-                s += board[i][j];
+                else { 
+                    s += board[i][j];
+                }
                 s += '|';
             }
             s += '\n' + "+-".repeat(board.length) + "+" + '\n';
@@ -33,8 +35,8 @@ public class Board {
     }
 
     // Valids parameters and procedes to add the desired checker to the Board
-    public boolean addChecker(char checker, int row, int col) {
-        if (checker != 'X' && checker != 'O') {
+    public boolean addChecker(Piece checker, int row, int col) {
+        if (checker.getChecker() != 'X' && checker.getChecker() != 'O') {
             System.out.println("Invalid checker type");
             return false;
         }
@@ -42,7 +44,11 @@ public class Board {
             System.out.println("Index is out of range");
             return false; 
         }
-        if (board[row][col] != '\u0000') { 
+        if (board[row][col] == null) { 
+            board[row][col] = checker;
+            return true;
+        }
+        if (board[row][col].getChecker() != '\u0000') { 
             System.out.println("Space is already taken");
             return false; 
         }
@@ -57,13 +63,13 @@ public class Board {
             System.out.println("Index is out of range");
             return false;
         }
-        board[row][col] = '\u0000';
+        board[row][col].setChecker('\u0000');
         return true;
     }
 
     // Returns true if specified char has a win in the game
-    public boolean isWin(char checker) {
-        if (checker != 'X' && checker != 'O') {
+    public boolean isWin(Piece checker) {
+        if (checker.getChecker() != 'X' && checker.getChecker() != 'O') {
             System.out.println("Invalid checker type");
             return false;
         }
@@ -93,7 +99,7 @@ public class Board {
     public boolean isFull() {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
-                if (board[i][j] == '\u0000') {
+                if (board[i][j] == null || board[i][j].getChecker() == '\u0000') {
                     return false;
                 }
             }
@@ -103,6 +109,6 @@ public class Board {
 
     // Replaces current board's 2-D array with new default one
     public void reset() {
-        board = new char[board.length][board.length];
+        board = new Piece[board.length][board.length];
     }
 }

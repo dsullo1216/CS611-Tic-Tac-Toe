@@ -71,7 +71,7 @@ public class Game {
     }
 
     public boolean processMove(Player player, Scanner sc) {
-        this.addChecker(player, sc);
+        addChecker(player, sc);
         if (board.isWin(player.getChecker())) {
             player.changeNumWins(player.getNumWins() + 1);
             System.out.println(player + " has won the game!");

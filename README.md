@@ -17,6 +17,7 @@ U44891473
 ## How to run
 ---------------------------------------------------------------------------
 1. Navigate to the main Project Directory after downloading the files
-2. Run the following instructions on command line:
+2. Run command line from within the src folder
+3. Run the following instructions on command line:
 javac *.java
 java Main

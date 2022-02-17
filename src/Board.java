@@ -1,19 +1,24 @@
 
-// Board class for implementing Tic-Tac-Toe. It holds a 2-D array of the Piece class and allows us to manipulate the board and check board status
-public class Board {
+// Board class for implementing Board-based games. It holds a 2-D array of the Piece class and allows us to manipulate the board and check board status
+public abstract class Board {
     
-    // 2-D char array that will store the data for the Tic-Tac-Toe board
-    private Piece[][] board; 
+    // 2-D char array that will store the data for the board
+    Piece[][] board; 
 
     // Default constructor that initializes board as a 3x3 2-D array
     public Board() {
         this.board = new Piece[3][3];
     }
 
-    // Constructor that allows for 2-D array of any size
+    // Constructor that allows for 2-D array of any size square
     public Board(int boardSize) {
         this.board = new Piece[boardSize][boardSize];
     }
+
+    // Constructor that allows for 2-D array of any size rectangle
+    public Board(int boardLength, int boardWidth) {
+        this.board = new Piece[boardLength][boardWidth];
+    } 
 
     // Overrides default toString method from Object class
     public String toString() {
@@ -40,7 +45,7 @@ public class Board {
             System.out.println("Invalid checker type");
             return false;
         }
-        if (row >= board.length || col >= board[0].length) { 
+        if (row >= board.length || row < 0 || col >= board[0].length || col < 0) { 
             System.out.println("Index is out of range");
             return false; 
         }
@@ -67,34 +72,20 @@ public class Board {
         return true;
     }
 
+    // Returns true if specified char has a win horizontally
+    abstract public boolean isHorizontalWin(Piece checker);
+
+    // Returns true if specified char has a win vertically
+    abstract public boolean isVerticalWin(Piece checker);
+
+    // Returns true if specifed char has a win diagonally from top-left to bottom-right
+    abstract public boolean isDiagonalDownWin(Piece checker);
+
+    // Returns true if specified char has a win diagonally from bottom-left to top-right
+    abstract public boolean isDiagonalUpWin(Piece checker);
+
     // Returns true if specified char has a win in the game
-    public boolean isWin(Piece checker) {
-        if (checker.getChecker() != 'X' && checker.getChecker() != 'O') {
-            System.out.println("Invalid checker type");
-            return false;
-        }
-        // loops through possible row/col indices. checks for horizontal/vertical win each pass for efficiency
-        for (int i = 0; i < board.length; i++) {
-            // checks for horizontal win
-            if ((board[i][0] != null && board[i][0].equals(checker)) && (board[i][1] != null && board[i][1].equals(checker)) && (board[i][2] != null && board[i][2].equals(checker))) {
-                return true;
-            }
-            // checks for vertical win
-            if ((board[0][i] != null && board[0][i].equals(checker)) && (board[1][i] != null && board[1][i].equals(checker)) && (board[2][i] != null && board[2][i].equals(checker))) {
-                return true;
-            }
-        }
-        // checks for upper-left to lower-right diagonal win
-        if ((board[0][0] != null && board[0][0].equals(checker)) && (board[1][1] != null && board[1][1].equals(checker)) && (board[2][2] != null && board[2][2].equals(checker))) {
-            return true;
-        }
-        // checks for upper-right to lower-left diagonal win
-        if ((board[0][2] != null && board[0][2].equals(checker)) && (board[1][1] != null && board[1][1].equals(checker)) && (board[2][0] != null && board[2][0].equals(checker))) {
-            return true;
-        }
-        // returns false if no win is found
-        return false;
-    }
+    abstract public boolean isWin(Piece checker);
 
     // Iterates through Board and checks if the board is full; meaning a tie has occurred
     public boolean isFull() {
@@ -110,6 +101,6 @@ public class Board {
 
     // Replaces current board's 2-D array with new default one
     public void reset() {
-        board = new Piece[board.length][board.length];
+        board = new Piece[board.length][board[0].length];
     }
 }

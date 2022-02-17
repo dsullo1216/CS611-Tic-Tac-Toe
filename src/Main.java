@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-// Wrapper class that invokes our Game class to run Tic-Tac-Toe.
+// Wrapper class that invokes our GameCenter class to run GameCenter.
 public class Main {
     public static void main(String[] args) {
         GameCenter gameCenter = new GameCenter();
@@ -8,5 +8,5 @@ public class Main {
         gameCenter.playGameCenter(sc);
         sc.close();
     } 
-    
+
 }

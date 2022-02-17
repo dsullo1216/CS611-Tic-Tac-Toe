@@ -1,15 +1,18 @@
 import java.util.Scanner;
 
+// Class to facilitate running both Tic-Tac-Toe and Order and Chaos
 public class GameCenter {
 
     private TicTacToeGame ticTacToeGame;
     private OrderChaosGame orderChaosGame;
     
+    // Constructor that simply initializes the instances of each game
     public GameCenter() {
         this.ticTacToeGame = new TicTacToeGame();
         this.orderChaosGame = new OrderChaosGame();
     }
 
+    // Handles the users initial choice and launches the first game
     public char launchGameCenter(Scanner sc) {
         System.out.println("Welcome to the Board Game Hub! Where you can play Tic-Tac-Toe and Order and Chaos!");
         System.out.println("Which game would you like to play?");
@@ -30,6 +33,7 @@ public class GameCenter {
         return choice;
     }
 
+    // Handles subsequent games and switching between Tic-Tac-Toe and Order and Chaos
     public boolean continueGameCenter(Scanner sc, char choice) {
         System.out.print("Would you like to play another game? (Y/N): ");
             char playAgain = sc.next().charAt(0);
@@ -56,10 +60,12 @@ public class GameCenter {
                 }
                 else {
                     if (choice == '0') {
+                        choice = '1';
                         ticTacToeGame.board.reset();
                         ticTacToeGame.playGame(sc);
                     }
                     else {
+                        choice = '0';
                         orderChaosGame.board.reset();
                         orderChaosGame.playGame(sc);
                     }
@@ -72,6 +78,7 @@ public class GameCenter {
             }
     }
 
+    // Calls on other methods of GameCenter class to fully operate the Board games
     public void playGameCenter(Scanner sc) {
         char choice = launchGameCenter(sc);
         boolean continueGameCenter;

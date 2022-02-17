@@ -1,5 +1,7 @@
+// Extension of Board class to represent an Order and Chaos board. Overrides abstract methods for checking for wins
 public class OrderChaosBoard extends Board {
 
+    // Calls the Board constructor to initialize a 6x6 2-D list 
     public OrderChaosBoard() {
         super(6);
     }

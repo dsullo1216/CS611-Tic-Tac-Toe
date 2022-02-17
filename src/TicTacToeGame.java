@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+// Extension of Game class to represent a Tic-Tac-Toe game. Implements abstract methods needed to play Tic-Tac-Toe
 public class TicTacToeGame extends Game {
 
     public TicTacToeGame() {
@@ -88,7 +89,7 @@ public class TicTacToeGame extends Game {
         return false;
     }
 
-    // Calls other methods of Game class and facilitates the game
+    // Calls other methods of TicTacToeGame class and facilitates the game
     public void playGame(Scanner sc) {
         Player[] players = launchGame(sc);
         Player player1 = players[0];

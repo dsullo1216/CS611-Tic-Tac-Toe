@@ -1,3 +1,4 @@
+// Extension of Player class to represent a Tic-Tac-Toe player. Overrides abstract class' toString and holds an instance of the Piece class
 public class TicTacToePlayer extends Player {
 
     // char storing either 'X' or 'O' as the Player's checker

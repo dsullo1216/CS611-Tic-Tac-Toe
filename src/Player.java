@@ -1,5 +1,5 @@
 
-// Player class for implementing Tic-Tac-Toe and Order and Chaos. It holds the number of wins the player has. Includes getters/setters
+// Abstract player class for implementing Tic-Tac-Toe and Order and Chaos. It holds the number of wins the player has. Includes getters/setters
 public abstract class Player {
 
     // int storing the number of wins the Player has

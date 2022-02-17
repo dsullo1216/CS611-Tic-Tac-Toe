@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-// Game class for implementing Tic-Tac-Toe. Holds an instance of Board class and includes methods to faciliate the game of Tic-Tac-Toe.
+// Abstract game class for implementing Board-games based on checkers. Holds an instance of Board class and includes methods to faciliate games.
 public abstract class Game {
     
     // Holds an instance of our Board class for the game
@@ -15,6 +15,7 @@ public abstract class Game {
     // Handles adding checker to the board and procedes to check for win for specified player or a tie
     public abstract boolean processMove(Player player, Scanner sc);
 
+    // Handles starting the game as well as the continuation of the game
     public abstract void playGame(Scanner sc);
 
 }

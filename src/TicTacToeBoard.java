@@ -1,5 +1,7 @@
+// Extension of Board class to represent a Tic-Tac-Toe board. Overrides abstract methods for checking for wins
 public class TicTacToeBoard extends Board {
     
+    // Calls the Board constructor to initialize a 3x3 2-D list 
     public TicTacToeBoard() {
         super(3);
     }

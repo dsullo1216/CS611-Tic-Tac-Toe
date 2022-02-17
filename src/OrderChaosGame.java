@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+// Extension of Game class to represent an Order and Chaos game. Implements abstract methods needed to play Order and Chaos
 public class OrderChaosGame extends Game {
     
     public OrderChaosGame() {
@@ -35,6 +36,7 @@ public class OrderChaosGame extends Game {
             }
     }
 
+    // Handles adding a checker to the board and validating indices inputs
     @Override
     public void addChecker(Player player, Scanner sc) {
 
@@ -64,6 +66,7 @@ public class OrderChaosGame extends Game {
         
     }
 
+    // Checks for win for Order player
     public boolean processMoveOrder(Player player, Scanner sc) {
 
         if (board.isWin(new Piece ('X')) || board.isWin(new Piece ('O'))) {
@@ -74,6 +77,7 @@ public class OrderChaosGame extends Game {
         return false;
     }
 
+    // Checks for win for Chaos player
     public boolean processMoveChaos(Player player, Scanner sc) {
         if (board.isFull()) {
             player.changeNumWins(player.getNumWins() + 1);
@@ -83,7 +87,7 @@ public class OrderChaosGame extends Game {
         return false;
     }
 
-
+    // Handles adding checker to the board and procedes to check for win for both players
     @Override
     public boolean processMove(Player player, Scanner sc) {
         addChecker(player, sc);
@@ -98,6 +102,7 @@ public class OrderChaosGame extends Game {
         return false;
     }
 
+    // Calls other methods of OrderChaosGame class and facilitates the game
     @Override
     public void playGame(Scanner sc) {
         Player[] players = launchGame(sc);

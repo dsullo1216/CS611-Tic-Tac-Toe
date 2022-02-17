@@ -1,5 +1,5 @@
 
-// Board class for implementing Board-based games. It holds a 2-D array of the Piece class and allows us to manipulate the board and check board status
+// Abstract board class for implementing Board-based games. It holds a 2-D array of the Piece class and allows us to manipulate the board and check board status
 public abstract class Board {
     
     // 2-D char array that will store the data for the board

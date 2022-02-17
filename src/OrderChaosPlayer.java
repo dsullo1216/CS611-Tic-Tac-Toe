@@ -1,3 +1,4 @@
+// Extension of Player class to represent an Order and Chaos player. Overrides abstract class' toString and holds an instance of a char to specify players
 public class OrderChaosPlayer extends Player {
 
     private char playerNum;

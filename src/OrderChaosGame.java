@@ -100,7 +100,6 @@ public class OrderChaosGame extends Game {
 
     @Override
     public void playGame(Scanner sc) {
-        // TODO Auto-generated method stub
         Player[] players = launchGame(sc);
         Player player1 = players[0];
         Player player2 = players[1];

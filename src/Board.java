@@ -3,7 +3,8 @@
 public abstract class Board {
     
     // 2-D char array that will store the data for the board
-    Piece[][] board; 
+    Piece[][] board;
+    protected int winCondition; 
 
     // Default constructor that initializes board as a 3x3 2-D array
     public Board() {

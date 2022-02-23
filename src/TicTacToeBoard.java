@@ -4,6 +4,7 @@ public class TicTacToeBoard extends Board {
     // Calls the Board constructor to initialize a 3x3 2-D list 
     public TicTacToeBoard() {
         super(3);
+        winCondition = 3;
     }
 
         // Returns true if specified char has a win horizontally
@@ -24,12 +25,10 @@ public class TicTacToeBoard extends Board {
                         break;
                     }
                 }
-                if (count == board.length) {
+                if (count == winCondition) {
                     return true;
                 }
-                else {
-                    count = 0;
-                }
+                count = 0;
             }
             return false;
         }
@@ -48,12 +47,10 @@ public class TicTacToeBoard extends Board {
                         break;
                     }
                 }
-                if (count == board.length) {
+                if (count == winCondition) {
                     return true;
                 }
-                else {
-                    count = 0;
-                }
+                count = 0;
             }
             return false;
         }
@@ -65,18 +62,18 @@ public class TicTacToeBoard extends Board {
             for (int i = 0; i < board.length; i++) {
                 if (board[i][i] != null && board[i][i].equals(checker)) {
                     count++;
+                    if (count == winCondition) {
+                        return true;
+                    }
                 }
                 else {
                     count = 0;
                     break;
                 }
-                if (count == board.length) {
-                    return true;
-                }
             }
             return false;
         }
-    
+        
         // Returns true if specified char has a win diagonally from bottom-left to top-right
         @Override
         public boolean isDiagonalUpWin(Piece checker) {
@@ -84,13 +81,13 @@ public class TicTacToeBoard extends Board {
             for (int i = 0; i < board.length; i++) {
                 if (board[i][i] != null && board[i][i].equals(checker)) {
                     count++;
+                    if (count == winCondition) {
+                        return true;
+                    }
                 }
                 else {
                     count = 0;
                     break;
-                }
-                if (count == board.length) {
-                    return true;
                 }
             }
             return false;

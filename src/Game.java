@@ -6,8 +6,11 @@ public abstract class Game {
     // Holds an instance of our Board class for the game
     Board board;
     
-    // Handles the beginning of a Tic-Tac-Toe game by printing the proper messages and allows user to determine whether 'X' or 'O' goes first
+    // Handles the beginning of a game by printing the proper messages and allows user to determine game settings
     public abstract Player[] launchGame(Scanner sc);
+
+    // Handles the end of a game by printing the proper messages and allows user to determine if they want to keep playing
+    public abstract boolean continueGame(Player player1, Player player2, Scanner sc);
 
     // Handles adding a checker to the board and validating indices inputs
     public abstract void addChecker(Player player, Scanner sc);

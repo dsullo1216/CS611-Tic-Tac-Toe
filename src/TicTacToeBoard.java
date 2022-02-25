@@ -7,100 +7,101 @@ public class TicTacToeBoard extends Board {
         winCondition = 3;
     }
 
-        // Returns true if specified char has a win horizontally
-        @Override
-        public boolean isHorizontalWin(Piece checker) {
-            if (checker.getChecker() != 'X' && checker.getChecker() != 'O') {
-                System.out.println("Invalid checker type");
-                return false;
-            }
-            int count = 0;
-            for (int i = 0; i < board.length; i++) {
-                for (int j = 0; j < board[0].length; j++) {
-                    if (board[i][j] != null && board[i][j].equals(checker)) {
-                        count++;
-                    }
-                    else {
-                        count = 0;
-                        break;
-                    }
-                }
-                if (count == winCondition) {
-                    return true;
-                }
-                count = 0;
-            }
+    // Returns true if specified char has a win horizontally
+    @Override
+    public boolean isHorizontalWin(Piece checker) {
+        if (checker.getChecker() != 'X' && checker.getChecker() != 'O') {
+            System.out.println("Invalid checker type");
             return false;
         }
-    
-        // Returns true if specified char has a win vertically
-        @Override
-        public boolean isVerticalWin(Piece checker) {
-            int count = 0;
-            for (int i = 0; i < board.length; i++) {
-                for (int j = 0; j < board[0].length; j++) {
-                    if (board[j][i] != null && board[j][i].equals(checker)) {
-                        count++;
-                    }
-                    else {
-                        count = 0;
-                        break;
-                    }
-                }
-                if (count == winCondition) {
-                    return true;
-                }
-                count = 0;
-            }
-            return false;
-        }
-    
-        // Returns true if specifed char has a win diagonally from top-left to bottom-right
-        @Override
-        public boolean isDiagonalDownWin(Piece checker) {
-            int count = 0;
-            for (int i = 0; i < board.length; i++) {
-                if (board[i][i] != null && board[i][i].equals(checker)) {
+        int count = 0;
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                if (board[i][j] != null && board[i][j].equals(checker)) {
                     count++;
-                    if (count == winCondition) {
-                        return true;
-                    }
                 }
                 else {
                     count = 0;
                     break;
                 }
             }
-            return false;
+            if (count == winCondition) {
+                return true;
+            }
+            count = 0;
         }
-        
-        // Returns true if specified char has a win diagonally from bottom-left to top-right
-        @Override
-        public boolean isDiagonalUpWin(Piece checker) {
-            int count = 0;
-            for (int i = 0; i < board.length; i++) {
-                if (board[i][i] != null && board[i][i].equals(checker)) {
+        return false;
+    }
+
+    // Returns true if specified char has a win vertically
+    @Override
+    public boolean isVerticalWin(Piece checker) {
+        int count = 0;
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                if (board[j][i] != null && board[j][i].equals(checker)) {
                     count++;
-                    if (count == winCondition) {
-                        return true;
-                    }
                 }
                 else {
                     count = 0;
                     break;
                 }
             }
+            if (count == winCondition) {
+                return true;
+            }
+            count = 0;
+        }
+        return false;
+    }
+
+    // Returns true if specifed char has a win diagonally from top-left to bottom-right
+    @Override
+    public boolean isDiagonalDownWin(Piece checker) {
+        int count = 0;
+        for (int i = 0; i < board.length; i++) {
+            if (board[i][i] != null && board[i][i].equals(checker)) {
+                count++;
+                if (count == winCondition) {
+                    return true;
+                }
+            }
+            else {
+                count = 0;
+                break;
+            }
+        }
+        return false;
+    }
+    
+    // TODO : Fix to properly check for diagonal down win
+    // Returns true if specified char has a win diagonally from bottom-left to top-right
+    @Override
+    public boolean isDiagonalUpWin(Piece checker) {
+        int count = 0;
+        for (int i = 0; i < board.length; i++) {
+            if (board[i][board.length-i-1] != null && board[i][board.length-i-1].equals(checker)) {
+                count++;
+                if (count == winCondition) {
+                    return true;
+                }
+            }
+            else {
+                count = 0;
+                break;
+            }
+        }
+        return false;
+    }
+
+    // Returns true if specified char has a win in the game
+    @Override
+    public boolean isWin(Piece checker) {
+        if (checker.getChecker() != 'X' && checker.getChecker() != 'O') {
+            System.out.println("Invalid checker type");
             return false;
         }
-    
-        // Returns true if specified char has a win in the game
-        @Override
-        public boolean isWin(Piece checker) {
-            if (checker.getChecker() != 'X' && checker.getChecker() != 'O') {
-                System.out.println("Invalid checker type");
-                return false;
-            }
-            return (isHorizontalWin(checker) || isVerticalWin(checker) || isDiagonalDownWin(checker) || isDiagonalUpWin(checker));
-        }
-    
+        return (isHorizontalWin(checker) || isVerticalWin(checker) || isDiagonalDownWin(checker) || isDiagonalUpWin(checker));
+    }
+
 }

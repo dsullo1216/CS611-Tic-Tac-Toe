@@ -40,7 +40,7 @@ public abstract class Board {
         return s;
     }
 
-    // Valids parameters and procedes to add the desired checker to the Board
+    // Validates parameters and procedes to add the desired checker to the Board
     public boolean addChecker(Piece checker, int row, int col) {
         if (checker.getChecker() != 'X' && checker.getChecker() != 'O') {
             System.out.println("Invalid checker type");
@@ -61,6 +61,11 @@ public abstract class Board {
         
         board[row][col] = checker;
         return true;
+    }
+
+    // dummy addChecker with just col parameter to be overridden in Connect Four class 
+    public boolean addChecker(Piece checker, int col) {
+        return false;
     }
 
     // Valids parameters and procedes to remove the desired index's checker from the Board
@@ -104,4 +109,5 @@ public abstract class Board {
     public void reset() {
         board = new Piece[board.length][board[0].length];
     }
+
 }

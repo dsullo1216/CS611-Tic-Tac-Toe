@@ -23,7 +23,7 @@ public abstract class Board {
 
     // Overrides default toString method from Object class
     public String toString() {
-        String s = "+-".repeat(board.length) + "+" + '\n';
+        String s = "+-".repeat(board[0].length) + "+" + '\n';
         for (int i = 0; i < board.length; i++) {
             s += "|";
             for (int j = 0; j < board[0].length; j++) {
@@ -35,7 +35,7 @@ public abstract class Board {
                 }
                 s += '|';
             }
-            s += '\n' + "+-".repeat(board.length) + "+" + '\n';
+            s += '\n' + "+-".repeat(board[0].length) + "+" + '\n';
         }
         return s;
     }

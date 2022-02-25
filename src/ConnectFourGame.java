@@ -54,7 +54,7 @@ public class ConnectFourGame extends Game {
     // Handles adding checker to the board and validating index input
     @Override
     public void addChecker(Player player, Scanner sc) {
-        System.out.println(player + ", Enter which column you would like to add a piece: ");
+        System.out.print(player + ", Enter which column you would like to add a piece: ");
         String playerMove = sc.next();
         if (playerMove.length() != 1) {
             playerMove = "x";

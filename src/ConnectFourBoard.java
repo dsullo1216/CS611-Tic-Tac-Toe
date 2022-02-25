@@ -23,10 +23,10 @@ public class ConnectFourBoard extends Board{
             return false;
         }
         int bottomRow = 0;
-        while (board[bottomRow+1][col] == null) {
+        while (bottomRow < board.length && board[bottomRow][col] == null) {
             bottomRow++;
         }
-        board[bottomRow][col] = checker;
+        board[bottomRow-1][col] = checker;
         return true;
     }
 
@@ -56,7 +56,6 @@ public class ConnectFourBoard extends Board{
                 }
                 else {
                     count = 0;
-                    break;
                 }
             }
             count = 0;
@@ -78,7 +77,6 @@ public class ConnectFourBoard extends Board{
                 }
                 else {
                     count = 0;
-                    break;
                 }
             }
             count = 0;

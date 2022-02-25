@@ -56,7 +56,7 @@ public class TicTacToeGame extends Game {
     public void addChecker(Player player, Scanner sc) {
         System.out.print(player + ", Enter your move in the format 'row,col' : ");
         String playerMove = sc.next();
-        if (playerMove.length() < 3) {
+        if (playerMove.length() != 3) {
             playerMove = "x,x";
         }
         int playerRow = Character.getNumericValue(playerMove.charAt(0));
@@ -64,7 +64,7 @@ public class TicTacToeGame extends Game {
         while (board.addChecker(((TicTacToePlayer) player).getChecker(), playerRow, playerCol) == false) {
             System.out.print("Invalid move. Please try again: ");
             playerMove = sc.next();
-            if (playerMove.length() < 3) {
+            if (playerMove.length() != 3) {
                 continue;
             }
             playerRow = Character.getNumericValue(playerMove.charAt(0));

@@ -17,6 +17,9 @@ U44891473
 <OrderChaosBoard.java> Extension of Board class to represent an Order and Chaos board. Overrides abstract methods for checking for wins
 <OrderChaosGame.java> Extension of Game class to represent an Order and Chaos game. Implements abstract methods needed to play Order and Chaos
 <OrderChaosPlayer.java> Extension of Player class to represent an Order and Chaos player. Overrides abstract class' toString and holds an instance of a char to specify players
+<ConnectFourBoard.java> Extension of Board class to represent a Connect Four board. Overrides abstract methods for checking for wins
+<ConnectFourGame.java> Extension of Game class to represent a Connect Four game. Implements abstract methods needed to play Connect Four
+<ConnectFourPlayer.java> Extension of Player class to represent a Connect Four player. Overrides abstract class' toString and holds an instance of the Piece class
 <GameCenter.java> Class to facilitate running both Tic-Tac-Toe and Order and Chaos
 <Main.java> Wrapper class that invokes our GameCenter class to run GameCenter.
 ## Notes
